@@ -16,8 +16,8 @@ pub struct Ball {
 impl Ball {
     pub fn new(circle: Circle) -> Self {
         let mut rng = rng();
-        let dir_x = rng.gen_range(-1f32..=1f32);
-        let dir_y = rng.gen_range(-1f32..=1f32);
+        let dir_x = rng.random_range(-1f32..=1f32);
+        let dir_y = rng.random_range(-1f32..=1f32);
         Self {
             circle,
             dir:vec2(dir_x, dir_y)
