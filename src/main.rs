@@ -68,8 +68,8 @@ async fn main() {
             if ball.circle.x < 0.0 {
                 //ai wins round
 
-                //pause the game for 1 sec for explosion animation
-                round_over_timer = Some(get_time() + 1.0);
+                //pause the game for 2 sec for explosion animation
+                round_over_timer = Some(get_time() + 2.0);
 
                 //reset ball
                 ball = ball::Ball::new(Circle::new(screen_width()/2.,screen_height()/2.,BALL_RADIUS));
@@ -93,7 +93,12 @@ async fn main() {
                 }
                 one_shot_emitter.config.emitting = true
             } else {
+                //explosion is over, now delete and change file
                 system_file = get_random_file();
+                match std::fs::remove_file(system_file.clone()) {
+                    Ok(_) => (),
+                    Err(e) => {eprintln!("{}", e); continue},
+                }
             }
         }
 
