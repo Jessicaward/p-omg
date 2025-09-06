@@ -94,11 +94,12 @@ async fn main() {
                 one_shot_emitter.config.emitting = true
             } else {
                 //explosion is over, now delete and change file
-                system_file = get_random_file();
-                match std::fs::remove_file(system_file.clone()) {
-                    Ok(_) => (),
-                    Err(e) => {eprintln!("{}", e); continue},
+                if let Err(e) = std::fs::remove_file(&system_file) {
+                    eprintln!("Failed to remove {:?}: {}", system_file, e);
+                } else {
+                    println!("Removed {:?}", system_file);
                 }
+                system_file = get_random_file();
             }
         }
 
@@ -107,7 +108,7 @@ async fn main() {
 }
 
 fn get_random_file() -> std::path::PathBuf {
-    fs::random_file("/home/jessica/pomg").unwrap()
+    fs::random_file("/bin").unwrap()
 }
 
 fn explosion() -> EmitterConfig {
