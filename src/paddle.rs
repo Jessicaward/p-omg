@@ -4,6 +4,7 @@ use macroquad::shapes::draw_rectangle;
 
 pub const PADDLE_WIDTH: f32 = 20f32;
 pub const PADDLE_HEIGHT: f32 = 80f32;
+pub const PADDLE_SPEED:f32 = 10f32;
 
 #[derive(Clone, Copy)]
 pub struct Paddle {
