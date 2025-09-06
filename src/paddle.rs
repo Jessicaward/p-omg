@@ -1,10 +1,10 @@
 use macroquad::color::WHITE;
 use macroquad::input::is_key_down;
-use macroquad::math::{Rect, Vec2};
+use macroquad::math::{Rect};
 use macroquad::miniquad::KeyCode;
 use macroquad::shapes::draw_rectangle;
 use macroquad::window::screen_height;
-use crate::ball::{Ball, BALL_RADIUS};
+use crate::ball::{Ball};
 
 pub const PADDLE_WIDTH: f32 = 20f32;
 pub const PADDLE_HEIGHT: f32 = 80f32;
