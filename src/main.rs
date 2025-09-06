@@ -36,6 +36,7 @@ async fn main() {
 
         //ai paddle
         ai_paddle.draw();
+        ai_paddle.ai_movement(&ball);
 
         //ball
         ball.draw();

@@ -1,9 +1,10 @@
 use macroquad::color::WHITE;
 use macroquad::input::is_key_down;
-use macroquad::math::Rect;
+use macroquad::math::{Rect, Vec2};
 use macroquad::miniquad::KeyCode;
 use macroquad::shapes::draw_rectangle;
 use macroquad::window::screen_height;
+use crate::ball::{Ball, BALL_RADIUS};
 
 pub const PADDLE_WIDTH: f32 = 20f32;
 pub const PADDLE_HEIGHT: f32 = 80f32;
@@ -31,6 +32,14 @@ impl Paddle {
             self.rect.y -= 1.*PADDLE_SPEED;
         } else if is_key_down(down) && self.rect.y < screen_height() - PADDLE_HEIGHT {
             self.rect.y += 1.*PADDLE_SPEED;
+        }
+    }
+
+    pub fn ai_movement(&mut self, ball: &Ball) {
+        if ball.circle.y < self.rect.y && self.rect.y >= 0f32 {
+            self.rect.y -= (PADDLE_SPEED/1.5);
+        } else if ball.circle.y > self.rect.y + PADDLE_HEIGHT && self.rect.y < screen_height() - PADDLE_HEIGHT {
+            self.rect.y += (PADDLE_SPEED/1.5);
         }
     }
 }
