@@ -8,7 +8,7 @@ const WINDOW_HEIGHT:i32 = 720;
 #[macroquad::main(conf)]
 async fn main() {
     //Left paddle
-    let player_paddle = paddle::Paddle::new(Rect::new(
+    let mut player_paddle = paddle::Paddle::new(Rect::new(
         WINDOW_WIDTH as f32 / 8.0,
         WINDOW_HEIGHT as f32 / 8.0,
         paddle::PADDLE_WIDTH,
@@ -16,7 +16,7 @@ async fn main() {
     ));
 
     //Right paddle
-    let ai_paddle = paddle::Paddle::new(Rect::new(
+    let mut ai_paddle = paddle::Paddle::new(Rect::new(
         (WINDOW_WIDTH as f32 / 8.0) * 7.0,
         WINDOW_HEIGHT as f32 / 8.0 ,
         paddle::PADDLE_WIDTH,
@@ -25,6 +25,7 @@ async fn main() {
 
     loop {
         clear_background(BLACK);
+        player_paddle.movement(KeyCode::W, KeyCode::S);
         player_paddle.draw();
         ai_paddle.draw();
         next_frame().await
