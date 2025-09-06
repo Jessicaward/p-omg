@@ -1,6 +1,8 @@
 mod paddle;
+mod ball;
 
 use macroquad::prelude::*;
+use crate::ball::BALL_RADIUS;
 
 const WINDOW_WIDTH:i32 = 1280;
 const WINDOW_HEIGHT:i32 = 720;
@@ -23,11 +25,22 @@ async fn main() {
         paddle::PADDLE_HEIGHT              //height
     ));
 
+    let mut ball = ball::Ball::new(Circle::new(screen_width() / 2., screen_height() /2., BALL_RADIUS));
+
     loop {
         clear_background(BLACK);
+
+        //player paddle
         player_paddle.movement(KeyCode::W, KeyCode::S);
         player_paddle.draw();
+
+        //ai paddle
         ai_paddle.draw();
+
+        //ball
+        ball.draw();
+        ball.move_ball();
+
         next_frame().await
     }
 }
