@@ -45,6 +45,19 @@ async fn main() {
         ball.collision_with_paddle(&player_paddle.rect);
         ball.collision_with_paddle(&ai_paddle.rect);
 
+        //check for win / lose
+        if ball.circle.x < 0.0 {
+            //ai wins round
+
+            //TODO burn file
+            ball = ball::Ball::new(Circle::new(screen_width()/2.,screen_height()/2.,BALL_RADIUS));
+        }else if ball.circle.x > screen_width() {
+            //player wins round
+
+            //TODO change file
+            ball = ball::Ball::new(Circle::new(screen_width()/2.,screen_height()/2.,BALL_RADIUS));
+        }
+
         next_frame().await
     }
 }
@@ -57,8 +70,6 @@ fn conf() -> Conf {
         fullscreen: false,
         high_dpi: true,
         window_resizable: false,
-        icon: None,
-        sample_count: 0,
-        platform: Default::default(),
+        ..Default::default()
     }
 }

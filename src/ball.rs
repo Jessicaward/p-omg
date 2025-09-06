@@ -9,15 +9,15 @@ const BALL_SPEED:f32 = 8f32;
 
 #[derive(Copy,Clone)]
 pub struct Ball {
-    circle:Circle,
+    pub circle:Circle,
     dir: Vec2 // direction of the ball
 }
 
 impl Ball {
     pub fn new(circle: Circle) -> Self {
         let mut rng = rng();
-        let dir_x = rng.random_range(-1f32..=1f32);
-        let dir_y = rng.random_range(-1f32..=1f32);
+        let dir_x = rng.random_range(-1.0..1.);
+        let dir_y = rng.random_range(-1.0..1.);
         Self {
             circle,
             dir:vec2(dir_x, dir_y)
