@@ -37,9 +37,9 @@ impl Paddle {
 
     pub fn ai_movement(&mut self, ball: &Ball) {
         if ball.circle.y < self.rect.y && self.rect.y >= 0f32 {
-            self.rect.y -= (PADDLE_SPEED/1.5);
+            self.rect.y -= (PADDLE_SPEED/2.5);
         } else if ball.circle.y > self.rect.y + PADDLE_HEIGHT && self.rect.y < screen_height() - PADDLE_HEIGHT {
-            self.rect.y += (PADDLE_SPEED/1.5);
+            self.rect.y += (PADDLE_SPEED/2.5);
         }
     }
 }

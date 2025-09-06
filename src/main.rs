@@ -28,7 +28,7 @@ async fn main() {
 
     let mut ball = ball::Ball::new(Circle::new(screen_width() / 2., screen_height() /2., BALL_RADIUS));
 
-    let system_file = get_random_file();
+    let mut system_file = get_random_file();
 
     loop {
         clear_background(BLACK);
@@ -56,12 +56,14 @@ async fn main() {
         if ball.circle.x < 0.0 {
             //ai wins round
 
-            //TODO burn file
+            system_file = get_random_file();
+
             ball = ball::Ball::new(Circle::new(screen_width()/2.,screen_height()/2.,BALL_RADIUS));
         }else if ball.circle.x > screen_width() {
             //player wins round
 
-            //TODO change file
+            system_file = get_random_file();
+
             ball = ball::Ball::new(Circle::new(screen_width()/2.,screen_height()/2.,BALL_RADIUS));
         }
 
