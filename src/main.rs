@@ -9,18 +9,18 @@ const WINDOW_HEIGHT:i32 = 720;
 async fn main() {
     //Left paddle
     let mut player_paddle = paddle::Paddle::new(Rect::new(
-        WINDOW_WIDTH as f32 / 8.0,
-        WINDOW_HEIGHT as f32 / 8.0,
-        paddle::PADDLE_WIDTH,
-        paddle::PADDLE_HEIGHT
+        WINDOW_WIDTH as f32 / 8.0,  //x
+        WINDOW_HEIGHT as f32 / 8.0, //y
+        paddle::PADDLE_WIDTH,       //width
+        paddle::PADDLE_HEIGHT       //height
     ));
 
     //Right paddle
     let mut ai_paddle = paddle::Paddle::new(Rect::new(
-        (WINDOW_WIDTH as f32 / 8.0) * 7.0,
-        WINDOW_HEIGHT as f32 / 8.0 ,
-        paddle::PADDLE_WIDTH,
-        paddle::PADDLE_HEIGHT
+        (WINDOW_WIDTH as f32 / 8.0) * 7.0, //x
+        WINDOW_HEIGHT as f32 / 8.0 ,       //y
+        paddle::PADDLE_WIDTH,              //width
+        paddle::PADDLE_HEIGHT              //height
     ));
 
     loop {
