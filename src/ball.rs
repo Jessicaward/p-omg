@@ -1,5 +1,5 @@
 use macroquad::color::WHITE;
-use macroquad::math::{vec2, Circle, Vec2};
+use macroquad::math::{vec2, Circle, Rect, Vec2};
 use macroquad::shapes::draw_circle;
 use macroquad::window::screen_height;
 use rand::{rng, Rng};
@@ -34,6 +34,13 @@ impl Ball {
         self.circle.y += self.dir.y * BALL_SPEED;
         if self.circle.y > screen_height() - BALL_RADIUS || self.circle.y < 0.0 {
             self.dir.y = -self.dir.y;
+        }
+    }
+
+    pub fn collision_with_paddle(&mut self, paddle: &Rect) {
+        let ball_rect = Rect::new(self.circle.x,self.circle.y,self.circle.r,self.circle.r);
+        if ball_rect.intersect(*paddle).is_some() {
+            self.dir.x = -self.dir.x;
         }
     }
 }

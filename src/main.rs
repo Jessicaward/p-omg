@@ -41,6 +41,10 @@ async fn main() {
         ball.draw();
         ball.move_ball();
 
+        //collision
+        ball.collision_with_paddle(&player_paddle.rect);
+        ball.collision_with_paddle(&ai_paddle.rect);
+
         next_frame().await
     }
 }

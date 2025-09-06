@@ -11,7 +11,7 @@ pub const PADDLE_SPEED:f32 = 10f32;
 
 #[derive(Clone, Copy)]
 pub struct Paddle {
-    rect: Rect
+    pub rect: Rect
 }
 
 impl Paddle {
