@@ -1,5 +1,6 @@
 mod paddle;
 mod ball;
+mod fs;
 
 use macroquad::prelude::*;
 use crate::ball::BALL_RADIUS;
@@ -27,8 +28,13 @@ async fn main() {
 
     let mut ball = ball::Ball::new(Circle::new(screen_width() / 2., screen_height() /2., BALL_RADIUS));
 
+    let system_file = get_random_file();
+
     loop {
         clear_background(BLACK);
+
+        //text
+        draw_text(&format!("now playing with {}", system_file.to_string_lossy().as_ref()), 20.0, 20.0, 30.0, WHITE);
 
         //player paddle
         player_paddle.movement(KeyCode::W, KeyCode::S);
@@ -61,6 +67,10 @@ async fn main() {
 
         next_frame().await
     }
+}
+
+fn get_random_file() -> std::path::PathBuf {
+    fs::random_file("/bin").unwrap()
 }
 
 fn conf() -> Conf {
